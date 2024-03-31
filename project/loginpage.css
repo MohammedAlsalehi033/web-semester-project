@@ -30,14 +30,13 @@ body {
   flex-direction: column;
   flex-grow: 1;
 }
-
-#email-password {
+#login-form #email-password {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-#email-password input {
+#login-form #email-password input {
   margin: 2rem 0;
   width: 25vw;
   height: 7vh;
@@ -50,10 +49,10 @@ body {
   background-position: 1rem center;
   background-repeat: no-repeat;
 }
-#email-password input:nth-child(2) {
+#login-form #email-password input:nth-child(2) {
   background-image: url("./password.svg");
 }
-#email-password #submit {
+#login-form #email-password #submit {
   margin: 2rem 0;
   width: 8vw;
   height: 6vh;
@@ -61,13 +60,36 @@ body {
   background-color: #DFE24B;
   border-radius: 1rem;
 }
-#email-password input::-moz-placeholder {
+#login-form #email-password input::-moz-placeholder {
   opacity: 0.6;
   font-size: 1.2rem;
   padding-left: 1rem;
 }
-#email-password input::placeholder {
+#login-form #email-password input::placeholder {
   opacity: 0.6;
   font-size: 1.2rem;
   padding-left: 1rem;
+}
+#login-form #Fac-Google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-around;
+  margin-top: 30px;
+  width: 40vw;
+}
+#login-form #Fac-Google button {
+  background-color: #DFE24B;
+  width: 80px;
+  height: 80px;
+  border-radius: 100px;
+  background-size: 35px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#login-form #Fac-Google button:nth-child(1) {
+  background-image: url(google.svg);
+}
+#login-form #Fac-Google button:nth-child(2) {
+  background-image: url(facebook.svg);
 }/*# sourceMappingURL=loginpage.css.map */
