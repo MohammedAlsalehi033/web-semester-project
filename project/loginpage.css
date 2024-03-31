@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+}
+
+body, html {
+  background-color: black;
+}
+
+/* Define a mixin for flex center alignment */
+body {
+  height: 100vh;
+  margin: 0;
+}
+
+#login-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #DFE24B; /* Use the defined variable for primary color */
+  width: 100%;
+  height: 10vh;
+  font-size: 1.5rem;
+}
+
+#login-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+#email-password {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#email-password input {
+  margin: 2rem 0;
+  width: 25vw;
+  height: 7vh;
+  box-sizing: border-box;
+  background-color: #DFE24B;
+  border-radius: 1rem;
+  padding-left: 3rem;
+  background-image: url("./email.svg");
+  background-size: 1.5rem;
+  background-position: 1rem center;
+  background-repeat: no-repeat;
+}
+#email-password input:nth-child(2) {
+  background-image: url("./password.svg");
+}
+#email-password #submit {
+  margin: 2rem 0;
+  width: 8vw;
+  height: 6vh;
+  box-sizing: border-box;
+  background-color: #DFE24B;
+  border-radius: 1rem;
+}
+#email-password input::-moz-placeholder {
+  opacity: 0.6;
+  font-size: 1.2rem;
+  padding-left: 1rem;
+}
+#email-password input::placeholder {
+  opacity: 0.6;
+  font-size: 1.2rem;
+  padding-left: 1rem;
+}/*# sourceMappingURL=loginpage.css.map */
