@@ -1,0 +1,170 @@
+@import "variables";
+@import "global";
+
+/* Header */
+#header {
+  @include flexCenter();
+  background-color: $third-color;
+  height: 10vh;
+  font-size: 1.5rem;
+}
+
+/* Main Container */
+.container {
+  display: flex;
+}
+
+/* Sidebar */
+aside {
+  position: sticky;
+  background-color: $primary-color;
+  height: 100vh;
+  width: 15vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+aside h1 {
+  margin: 1rem 0;
+}
+
+/* Main Content Section */
+section {
+  margin: 2rem; /* Adjusted margin for better spacing */
+  padding: 1rem;
+  background-color: $primary-color;
+  flex: 1; /* Grow to fill remaining space */
+}
+
+/* Management Bar */
+#management-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+#management-bar button {
+  width: 15vw;
+  height: 7vh;
+  background-color: $third-color;
+  border-radius: 1rem;
+  border: 0px;
+}
+
+#search {
+  width: 55vw;
+  height: 7vh;
+  background-color: $third-color;
+  border-radius: 1rem;
+  padding-left: 3rem;
+  background-image: url("./search.svg");
+  background-size: 1.5rem;
+  background-position: 1rem center;
+  background-repeat: no-repeat;
+  border: 0px;
+}
+
+/* Table Header */
+#table-header {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 7vh;
+  background-color: $third-color;
+  border-radius: 1rem;
+  border: 0px;
+}
+
+#table-header h1 {
+  max-width: 10vw;
+  min-width: 8vw;
+}
+
+/* Table Row */
+.table-row {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: 7vh;
+  background-color: $third-color;
+  border-radius: 1rem;
+  border: 0px;
+}
+
+.table-row h6 {
+  max-width: 10vw;
+  min-width: 7vw;
+}
+button{
+  margin-left: 20px; 
+    width: 15vw;
+    height: 7vh;
+    box-sizing: border-box;
+    background-color: $third-color;
+    border-radius: 1rem; 
+    border: 0px;
+
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  /* Adjust styles for smaller screens */
+  aside {
+    width: 100%; /* Occupy full width */
+    max-width: 100%;
+    height: auto; /* Adjust height automatically based on content */
+  }
+  
+  #management-bar {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  #management-bar button,
+  #search {
+    width: 90%; /* Occupy 90% of the width */
+    margin: 0.5rem auto; /* Center horizontally with some margin */
+  }
+
+  #header {
+    padding: 0 1rem; /* Added padding for better spacing */
+  }
+}
+/* Add cool input field style */
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+  border-color: dodgerblue;
+  outline: none;
+}
+
+/* Add custom checkbox style */
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="checkbox"]:checked {
+  background-color: dodgerblue;
+}

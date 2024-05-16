@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  background-color: black;
+}
+
+/* Define a mixin for flex center alignment */
+body {
+  min-height: 100vh; /* Changed to min-height */
+}
+
+#login-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #DFE24B; /* Use the defined variable for primary color */
+  width: 100%;
+  height: 10vh;
+  font-size: 1.5rem;
+}
+
+#login-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  flex-direction: column;
+  flex-grow: 1;
+}
+#login-form #email-password {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#login-form #email-password input {
+  margin: 2rem 0;
+  width: 25vw;
+  height: 7vh;
+  box-sizing: border-box;
+  background-color: #DFE24B;
+  border-radius: 1rem;
+  padding-left: 3rem;
+  background-image: url("./email.svg");
+  background-size: 1.5rem;
+  background-position: 1rem center;
+  background-repeat: no-repeat;
+}
+#login-form #email-password input:nth-child(2) {
+  background-image: url("./password.svg");
+}
+#login-form #email-password #submit {
+  margin: 2rem 0;
+  width: 8vw;
+  height: 6vh;
+  box-sizing: border-box;
+  background-color: #DFE24B;
+  border-radius: 1rem;
+}
+#login-form #email-password input::-moz-placeholder {
+  opacity: 0.6;
+  font-size: 1.2rem;
+  padding-left: 1rem;
+}
+#login-form #email-password input::placeholder {
+  opacity: 0.6;
+  font-size: 1.2rem;
+  padding-left: 1rem;
+}
+#login-form #Fac-Google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-around;
+  margin-top: 30px;
+  width: 40vw;
+}
+#login-form #Fac-Google button {
+  background-color: #DFE24B;
+  width: 80px;
+  height: 80px;
+  border-radius: 100px;
+  background-size: 35px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#login-form #Fac-Google button:nth-child(1) {
+  background-image: url(google.svg);
+}
+#login-form #Fac-Google button:nth-child(2) {
+  background-image: url(facebook.svg);
+}/*# sourceMappingURL=loginpage.css.map */
