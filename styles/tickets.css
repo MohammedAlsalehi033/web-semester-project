@@ -13,6 +13,10 @@ body {
   min-height: 100vh; /* Changed to min-height */
 }
 
+a {
+  text-decoration: none;
+}
+
 /* Header */
 #header {
   display: flex;

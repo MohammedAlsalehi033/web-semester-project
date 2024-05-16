@@ -1,6 +1,6 @@
-
 @import "variables";
 @import "global";
+
 #header {
   @include flexCenter();
   background-color: $third-color;
@@ -32,22 +32,19 @@ section {
   background-color: $primary-color;
   width: 90vw;
 }
-#managment-bar{
 
-
-  button{
+#managment-bar {
+  button {
     margin-left: 20px; 
-      width: 15vw;
-      height: 7vh;
-      box-sizing: border-box;
-      background-color: $third-color;
-      border-radius: 1rem; 
-      border: 0px;
-  
+    width: 15vw;
+    height: 7vh;
+    box-sizing: border-box;
+    background-color: $third-color;
+    border-radius: 1rem; 
+    border: 0px;
   }
 
-  #search{
- 
+  #search {
     width: 55vw;
     height: 7vh;
     box-sizing: border-box;
@@ -60,16 +57,13 @@ section {
     background-repeat: no-repeat;
     border: 0px;
   }
-
 }
 
-
-#main-panal{
+#main-panal {
   margin: 10px;
   background-color: $third-color;
   display: grid;
   height: 40vh;
-  background-color: $third-color;
   border-radius: 1rem; 
   border: 0px;
   width: 79vw;
@@ -77,18 +71,13 @@ section {
   justify-items: center;
   grid-template-rows: 5vh auto;
 
-
-
-
-  h1{
+  h1 {
     text-align: center;
     width: fit-content;
   }
 }
 
-
-
-#secondery-panal{
+#secondery-panal {
   margin-top: 20px;
   margin: 10px;
   display: grid;
@@ -100,32 +89,49 @@ section {
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
 
-
-  .panal{
+  .panal {
     margin: 10px;
     display: inline;
     width: 25vw;
     height: 20vh;
     border-radius: 1rem; 
     background-color: $third-color;
+    overflow: hidden; /* Prevent text overflow */
+    text-overflow: ellipsis; /* Replace overflowed text with ellipsis */
   }
 
-  h1{
+  h1, h6 {
     text-align: center;
-margin-left: 20px;
     margin: 10px;
     width: fit-content;
-    
-
-  }
-
-  h6{
-    text-align: center;
-margin-left: 20px;
-    margin: 10px;
-    width: fit-content;
-    
-
   }
 }
 
+// Media queries for responsiveness
+@media only screen and (max-width: 768px) {
+  aside {
+    width: 100%;
+  }
+
+  #managment-bar {
+    button {
+      width: 100%;
+    }
+
+    #search {
+      width: 100%;
+    }
+  }
+
+  #main-panal, #secondery-panal {
+    width: 90vw;
+  }
+
+  #secondery-panal {
+    grid-template-columns: 1fr;
+  }
+
+  .panal {
+    width: 90vw;
+  }
+}

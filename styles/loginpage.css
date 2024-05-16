@@ -13,6 +13,10 @@ body {
   min-height: 100vh; /* Changed to min-height */
 }
 
+a {
+  text-decoration: none;
+}
+
 #login-header {
   display: flex;
   align-items: center;
@@ -45,13 +49,13 @@ body {
   background-color: #DFE24B;
   border-radius: 1rem;
   padding-left: 3rem;
-  background-image: url("./email.svg");
+  background-image: url("../assets/email.svg");
   background-size: 1.5rem;
   background-position: 1rem center;
   background-repeat: no-repeat;
 }
 #login-form #email-password input:nth-child(2) {
-  background-image: url("./password.svg");
+  background-image: url("../assets/password.svg");
 }
 #login-form #email-password #submit {
   margin: 2rem 0;
@@ -89,8 +93,8 @@ body {
   background-position: center;
 }
 #login-form #Fac-Google button:nth-child(1) {
-  background-image: url(google.svg);
+  background-image: url(../assets/google.svg);
 }
 #login-form #Fac-Google button:nth-child(2) {
-  background-image: url(facebook.svg);
+  background-image: url(../assets/facebook.svg);
 }/*# sourceMappingURL=loginpage.css.map */
