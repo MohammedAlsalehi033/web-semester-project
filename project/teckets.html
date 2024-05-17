@@ -7,7 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="/styles/tickets.css">
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-   <script src="js/tickets.js"></script>
+   <script type="module" src="js/tickets.js"></script>
 </head>
 
 <body>
@@ -32,19 +32,15 @@
   <!-- Ticket Panel -->
 <section id="ticket-panel" style="display: none;">
     <h1>Add New Ticket</h1>
-    <input type="text" placeholder="From">
-    <input type="text" placeholder="To">
+    <input type="text" placeholder="From" id="from">
+    <input type="text" placeholder="To" id="to">
     <label for="time-select">Time:</label>
-    <select id="time-select">
-        <option value="08:00">08:00 AM</option>
-        <option value="12:00">12:00 PM</option>
-        <option value="18:00">06:00 PM</option>
-        <!-- Add more options if needed -->
-    </select>
-    <input type="number" placeholder="Seats" min="1">
-    <input type="text" placeholder="Class">
-    <label><input type="checkbox"> Wifi</label>
-    <label><input type="checkbox"> Food</label>
+    <input type="text" id="time" placeholder="Time">
+    <input type="number" placeholder="Seats" id="seats" min="1">
+    <input type="text" placeholder="Class" id="class">
+    <label><input type="checkbox" id="wifi"> Wifi</label>
+    <label><input type="checkbox" id="food"> Food</label>
+    <button id="submit-ticket-btn">Submit</button>
     <br>
     <br>
     <br>
@@ -52,7 +48,7 @@
 </section>
 
 
-
+<section>
             <!-- Table Header -->
             <section id="table-header">
                 <h1>From</h1>
@@ -65,15 +61,8 @@
             </section>
 
             <!-- Table Row -->
-            <section class="table-row">
-                <h6>ABC</h6>
-                <h6>XYZ</h6>
-                <h6>00:00</h6>
-                <h6>100/100</h6>
-                <h6>Economy</h6>
-                <h6>True</h6>
-                <h6>True</h6>
-            </section>
+          
+        </section>
         </section>
     </div>
 </body>

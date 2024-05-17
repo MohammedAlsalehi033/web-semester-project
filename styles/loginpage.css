@@ -49,13 +49,13 @@ a {
   background-color: #DFE24B;
   border-radius: 1rem;
   padding-left: 3rem;
-  background-image: url("../assets/email.svg");
+  background-image: url("./email.svg");
   background-size: 1.5rem;
   background-position: 1rem center;
   background-repeat: no-repeat;
 }
 #login-form #email-password input:nth-child(2) {
-  background-image: url("../assets/password.svg");
+  background-image: url("./password.svg");
 }
 #login-form #email-password #submit {
   margin: 2rem 0;
@@ -93,8 +93,8 @@ a {
   background-position: center;
 }
 #login-form #Fac-Google button:nth-child(1) {
-  background-image: url(../assets/google.svg);
+  background-image: url(google.svg);
 }
 #login-form #Fac-Google button:nth-child(2) {
-  background-image: url(../assets/facebook.svg);
+  background-image: url(facebook.svg);
 }/*# sourceMappingURL=loginpage.css.map */

@@ -35,6 +35,7 @@ a {
 /* Sidebar */
 aside {
   position: sticky;
+  top: 0; /* Ensure it sticks to the top */
   background-color: #DFE24B;
   height: 100vh;
   width: 15vw;
