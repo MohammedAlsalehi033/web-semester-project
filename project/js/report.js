@@ -18,34 +18,32 @@ $(document).ready(function () {
     }
 
     function renderSalesChart(tickets) {
-        // Get the 2D context of the canvas element with id 'salesChart'
         const ctx = document.getElementById('salesChart').getContext('2d');
-        
-        // Prepare the data for the chart
         const salesData = {
-            labels: tickets.map(ticket => ticket.time), // X-axis labels will be the times of the tickets
-            datasets: [{
-                label: 'Sales', // Label for the dataset
-                data: tickets.map(ticket => ticket.seats - ticket.remainingSeats),
-                backgroundColor: 'rgba(75, 192, 192, 0.2)', // Background color of the bars
-                borderColor: 'rgba(75, 192, 192, 1)', // Border color of the bars
-                borderWidth: 1 // Border width of the bars
-            }]
+          labels: tickets.map(ticket => ticket.time),
+          datasets: [{
+            label: 'Sales',
+            data: tickets.map(ticket => ticket.seats - ticket.remainingSeats), // Calculate sold seats
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
         };
-        
-        // Create a new bar chart using Chart.js
         new Chart(ctx, {
-            type: 'bar', // Chart type is bar
-            data: salesData, // Data for the chart
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true // Y-axis should start at zero
-                    }
-                }
+          type: 'bar',
+          data: salesData,
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true
+              }
             }
+          }
         });
-    }
+      }
+      
     
 
     function renderMostBoughtTickets(tickets) {
