@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../styles/report.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -15,95 +17,53 @@
 
     <div class="container">
         <aside>
-            <a href="./teckets.html"><h1>Tickets</h1></a>
+            <a href="./tickets.html"><h1>Tickets</h1></a>
             <a href="./reports.html"><h1>Reports</h1></a>
             <a href="#"><h1>Profile</h1></a>
             <a href="./LoginPage.html"><h1>Sign out</h1></a>
         </aside>
 
         <section>
-           
             <section id="main-panal">
                 <h1>Sales Last (XXX)</h1>
-                <img height="300" width="900px" src="image.png" alt="" srcset="">
+                <canvas id="salesChart" height="300" width="900"></canvas>
             </section>
-               
-
 
             <section id="secondery-panal">
-    
                 <section class="panal">
                     <h1>Most Bought Tickets</h1>
-                        <ol>
-                            <li>XYZ</li>
-                            <li>XYZ</li>
-                            <li>XYZ</li>
-                            <li>XYZ</li>
-                            <li>XYZ</li>
-                        </ol>
+                    <ol id="mostBoughtTickets"></ol>
                 </section>
 
                 <section class="panal">
                     <h1>Most Bought Destination</h1>
-                    <ol>
-                        <li>XYZ</li>
-                        <li>XYZ</li>
-                        <li>XYZ</li>
-                        <li>XYZ</li>
-                        <li>XYZ</li>
-                    </ol>
+                    <ol id="mostBoughtDestinations"></ol>
                 </section>
 
                 <section class="panal">
                     <h1>Most Bought Time</h1>
-                    <ol>
-                        <li>XYZ</li>
-                        <li>XYZ</li>
-                        <li>XYZ</li>
-                        <li>XYZ</li>
-                        <li>XYZ</li>
-                    </ol>
+                    <ol id="mostBoughtTimes"></ol>
                 </section>
 
                 <section class="panal">
                     <h1>Most Bought Class</h1>
-                    <ol>
-                        <li>XYZ</li>
-                        <li>XYZ</li>
-                        <li>XYZ</li>
-                        <li>XYZ</li>
-                        <li>XYZ</li>
-                    </ol>
+                    <ol id="mostBoughtClasses"></ol>
                 </section>
 
                 <section class="panal">
                     <h1>Most Bought XYZ</h1>
-                    <ol>
-                        <li>XYZ</li>
-                        <li>XYZ</li>
-                        <li>XYZ</li>
-                        <li>XYZ</li>
-                        <li>XYZ</li>
-                    </ol>
+                    <ol id="mostBoughtXYZ1"></ol>
                 </section>
 
                 <section class="panal">
                     <h1>Most Bought XYZ</h1>
-                    <ol>
-                        <li>XYZ</li>
-                        <li>XYZ</li>
-                        <li>XYZ</li>
-                        <li>XYZ</li>
-                        <li>XYZ</li>
-                    </ol>
+                    <ol id="mostBoughtXYZ2"></ol>
                 </section>
             </section>
-    
-              
-
-            </section>
-         
+        </section>
     </div>
+
+    <script src="./js/report.js"></script>
 </body>
 
 </html>
