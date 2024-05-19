@@ -20,7 +20,7 @@ $(document).ready(function () {
     function renderSalesChart(tickets) {
         const ctx = document.getElementById('salesChart').getContext('2d');
         const salesData = {
-          labels: tickets.map(ticket => ticket.time),
+          labels: tickets.map(ticket => `${ticket.from} to ${ticket.to}`),
           datasets: [{
             label: 'Sales',
             data: tickets.map(ticket => ticket.seats - ticket.remainingSeats), // Calculate sold seats
@@ -55,18 +55,22 @@ $(document).ready(function () {
 
     function renderMostBoughtDestinations(tickets) {
         const destinations = tickets.reduce((acc, ticket) => {
-            acc[ticket.to] = (acc[ticket.to] || 0) + ticket.seats;
+            const soldSeats = ticket.seats - ticket.remainingSeats;
+            acc[ticket.to] = (acc[ticket.to] || 0) + soldSeats;
             return acc;
         }, {});
+
+        console.log(Object.entries(destinations))
         const sortedDestinations = Object.entries(destinations).sort((a, b) => b[1] - a[1]).slice(0, 5);
         sortedDestinations.forEach(destination => {
             $('#mostBoughtDestinations').append(`<li>${destination[0]}</li>`);
         });
     }
-
+    
     function renderMostBoughtTimes(tickets) {
         const times = tickets.reduce((acc, ticket) => {
-            acc[ticket.time] = (acc[ticket.time] || 0) + ticket.seats;
+            const soldSeats = ticket.seats - ticket.remainingSeats;
+            acc[ticket.time] = (acc[ticket.time] || 0) + soldSeats;
             return acc;
         }, {});
         const sortedTimes = Object.entries(times).sort((a, b) => b[1] - a[1]).slice(0, 5);
@@ -77,7 +81,8 @@ $(document).ready(function () {
 
     function renderMostBoughtClasses(tickets) {
         const classes = tickets.reduce((acc, ticket) => {
-            acc[ticket.ticketClass] = (acc[ticket.ticketClass] || 0) + ticket.seats;
+            const soldSeats = ticket.seats - ticket.remainingSeats;
+            acc[ticket.ticketClass] = (acc[ticket.ticketClass] || 0) + soldSeats;
             return acc;
         }, {});
         const sortedClasses = Object.entries(classes).sort((a, b) => b[1] - a[1]).slice(0, 5);
