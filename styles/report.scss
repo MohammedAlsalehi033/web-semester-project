@@ -1,61 +1,80 @@
 @import "variables";
 @import "global";
 
+$text-color: black;
+
 #header {
   @include flexCenter();
   background-color: $third-color;
   width: 100%;
   height: 10vh;
-  font-size: 1.5rem;  
+  font-size: 1.5rem;
+  color: $text-color; 
 }
 
 .container {
   display: flex;
+  flex-direction: row; 
 }
 
 aside {
+  position: -webkit-sticky;
   position: sticky;
   background-color: $primary-color;
   height: 100vh;
   width: 15vw;
   display: flex;
   flex-direction: column;
-  align-items: center; 
-}
+  align-items: center;
+  padding: 1rem;
 
-aside h1 {
-  margin: 1rem 0; 
+  h1 {
+    margin: 1rem 0;
+    color: $text-color;
+  }
 }
 
 section {
   margin: 40px;
   background-color: $primary-color;
-  width: 90vw;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 #managment-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
   button {
-    margin-left: 20px; 
+    margin-left: 20px;
     width: 15vw;
     height: 7vh;
-    box-sizing: border-box;
     background-color: $third-color;
-    border-radius: 1rem; 
-    border: 0px;
+    border-radius: 1rem;
+    border: none;
+    color: $text-color; // Ensure text color contrasts with the background
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: lighten($third-color, 10%);
+    }
   }
 
   #search {
-    width: 55vw;
     height: 7vh;
-    box-sizing: border-box;
     background-color: $third-color;
-    border-radius: 1rem; 
-    padding-left: 3rem; 
+    border-radius: 1rem;
+    padding-left: 3rem;
     background-image: url("./search.svg");
-    background-size: 1.5rem; 
-    background-position: 1rem center;  
+    background-size: 1.5rem;
+    background-position: 1rem center;
     background-repeat: no-repeat;
-    border: 0px;
+    border: none;
+    color: $text-color;
   }
 }
 
@@ -63,17 +82,25 @@ section {
   margin: 10px;
   background-color: $third-color;
   display: grid;
-  height: 40vh;
-  border-radius: 1rem; 
-  border: 0px;
-  width: 79vw;
+  height: auto;
+  border-radius: 1rem;
+  padding: 1rem;
   align-items: center;
   justify-items: center;
-  grid-template-rows: 5vh auto;
+  grid-template-rows: auto 1fr;
 
   h1 {
     text-align: center;
     width: fit-content;
+    margin-bottom: 1rem;
+    color: $text-color; 
+  }
+
+  canvas {
+    width: 100% !important;
+    max-width: 1000px; // Limit the width of the chart
+    height: auto !important;
+    max-height: 400px; // Limit the height of the chart
   }
 }
 
@@ -81,29 +108,33 @@ section {
   margin-top: 20px;
   margin: 10px;
   display: grid;
-  border-radius: 1rem; 
-  border: 0px;
+  border-radius: 1rem;
   width: 80vw;
   align-items: center;
   justify-content: center;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
 
   .panal {
     margin: 10px;
-    display: inline;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 25vw;
     height: 20vh;
-    border-radius: 1rem; 
+    border-radius: 1rem;
     background-color: $third-color;
-    overflow: hidden; /* Prevent text overflow */
-    text-overflow: ellipsis; /* Replace overflowed text with ellipsis */
-  }
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 
-  h1, h6 {
-    text-align: center;
-    margin: 10px;
-    width: fit-content;
+    h1, h6 {
+      text-align: center;
+      margin: 10px;
+      width: fit-content;
+      color: $text-color; // Ensure text color contrasts with the background
+    }
   }
 }
 
@@ -111,27 +142,53 @@ section {
 @media only screen and (max-width: 768px) {
   aside {
     width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0.5rem;
+
+    h1 {
+      font-size: 1rem;
+      margin: 0;
+    }
+  }
+
+  .container {
+    flex-direction: column;
   }
 
   #managment-bar {
-    button {
-      width: 100%;
-    }
+    flex-direction: column;
+    align-items: flex-start;
 
-    #search {
+    button, #search {
       width: 100%;
+      margin: 0.5rem 0;
     }
   }
 
-  #main-panal, #secondery-panal {
+  section {
     width: 90vw;
+    margin: 20px auto;
+    padding: 1rem;
+  }
+
+  #main-panal, #secondery-panal {
+    width: 100%;
   }
 
   #secondery-panal {
     grid-template-columns: 1fr;
+    grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
   }
 
   .panal {
-    width: 90vw;
+    width: 75vw !important;
+    height: auto;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: auto !important;
   }
 }
