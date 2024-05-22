@@ -17,13 +17,34 @@ $(document).ready(function() {
 
     function renderSeats(ticket) {
         const seatLayout = $('#seat-layout');
-        seatLayout.empty(); 
+        seatLayout.empty();
 
-        for (let i = 1; i <= ticket.seats; i++) {
-            const seatClass = ticket.bookedSeats.includes(i) ? 'booked' : 'available';
-            seatLayout.append(`<div class="seat ${seatClass}" data-seat="${i}">${i}</div>`);
+        // Render the driver's seat on the right side
+        seatLayout.append('<div class="seat driver" data-seat="driver">Driver</div>');
+
+        // Calculate the number of rows
+        const rows = Math.ceil((ticket.seats - 5) / 4) + 1; // +1 to include the last row
+        let seatCount = 1;
+
+        for (let row = 1; row < rows; row++) {
+            // Render seats in pairs with an aisle
+            for (let col = 1; col <= 4; col++) {
+                const seatPosition = (col <= 2) ? col : col + 1; // Skip the middle column for the aisle
+                const seatClass = ticket.bookedSeats.includes(seatCount) ? 'booked' : 'available';
+
+                seatLayout.append(`<div class="seat ${seatClass}" data-seat="${seatCount}" style="grid-column: ${seatPosition}">${seatCount}</div>`);
+                seatCount++;
+            }
         }
 
+        // Render the last row with five seats
+        for (let col = 1; col <= 5; col++) {
+            const seatClass = ticket.bookedSeats.includes(seatCount) ? 'booked' : 'available';
+            seatLayout.append(`<div class="seat ${seatClass} last-row" data-seat="${seatCount}" style="grid-column: ${col}">${seatCount}</div>`);
+            seatCount++;
+        }
+
+        // Attach click event to available seats
         $('.seat.available').click(function() {
             const seatNumber = $(this).data('seat');
             bookSeat(ticket.id, seatNumber);
@@ -38,7 +59,7 @@ $(document).ready(function() {
             data: JSON.stringify({ id: ticketId, seatNumber: seatNumber }),
             success: function(response) {
                 alert('Seat booked successfully');
-                fetchTicketDetails(); 
+                fetchTicketDetails();
             },
             error: function(error) {
                 alert('Error booking seat: ' + error.responseJSON.error);
