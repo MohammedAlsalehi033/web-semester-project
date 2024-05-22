@@ -17,7 +17,7 @@ $(document).ready(function() {
 
     function renderSeats(ticket) {
         const seatLayout = $('#seat-layout');
-        seatLayout.empty(); // Clear previous seat layout
+        seatLayout.empty(); 
 
         for (let i = 1; i <= ticket.seats; i++) {
             const seatClass = ticket.bookedSeats.includes(i) ? 'booked' : 'available';
@@ -38,7 +38,7 @@ $(document).ready(function() {
             data: JSON.stringify({ id: ticketId, seatNumber: seatNumber }),
             success: function(response) {
                 alert('Seat booked successfully');
-                fetchTicketDetails(); // Refresh seat layout
+                fetchTicketDetails(); 
             },
             error: function(error) {
                 alert('Error booking seat: ' + error.responseJSON.error);
