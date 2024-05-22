@@ -4,7 +4,6 @@ $(document).ready(function () {
             type: 'GET',
             url: 'https://webproject-123-41fb57c20018.herokuapp.com/tickets',
             success: function (tickets) {
-                console.log('Tickets:', tickets);
                 renderSalesChart(tickets);
                 renderMostBoughtTickets(tickets);
                 renderMostBoughtDestinations(tickets);
@@ -23,7 +22,7 @@ $(document).ready(function () {
           labels: tickets.map(ticket => `${ticket.from} to ${ticket.to}`),
           datasets: [{
             label: 'Sales',
-            data: tickets.map(ticket => ticket.seats - ticket.remainingSeats), // Calculate sold seats
+            data: tickets.map(ticket => ticket.seats - ticket.remainingSeats), 
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1
@@ -47,7 +46,11 @@ $(document).ready(function () {
     
 
     function renderMostBoughtTickets(tickets) {
-        const mostBoughtTickets = tickets.sort((a, b) => b.seats - a.seats).slice(0, 5);
+        
+        
+        const mostBoughtTickets = tickets.sort((a, b) => b.bookedSeats.length - a.bookedSeats.length).slice(0, 5);
+        console.log(mostBoughtTickets)
+
         mostBoughtTickets.forEach(ticket => {
             $('#mostBoughtTickets').append(`<li>${ticket.from} to ${ticket.to}</li>`);
         });
@@ -60,7 +63,6 @@ $(document).ready(function () {
             return acc;
         }, {});
 
-        console.log(Object.entries(destinations))
         const sortedDestinations = Object.entries(destinations).sort((a, b) => b[1] - a[1]).slice(0, 5);
         sortedDestinations.forEach(destination => {
             $('#mostBoughtDestinations').append(`<li>${destination[0]}</li>`);
