@@ -59,6 +59,11 @@ $(document).ready(function () {
         $("#ticket-panel input[type='checkbox']").prop("checked", false);
     });
 
+    // Add event listener to the "Search" button
+    $("#search-btn").click(function () {
+        searchTickets();
+    });
+
     // Function to retrieve all tickets
     function getTickets() {
         $.ajax({
@@ -74,11 +79,34 @@ $(document).ready(function () {
         });
     }
 
+    // Function to search and filter tickets
+    function searchTickets() {
+        var fromCity = $("#search-from").val().toLowerCase();
+        var toCity = $("#search-to").val().toLowerCase();
+
+        $.ajax({
+            type: 'GET',
+            url: 'https://webproject-123-41fb57c20018.herokuapp.com/tickets',
+            success: function (tickets) {
+                var filteredTickets = tickets.filter(ticket => {
+                    return (
+                        (!fromCity || ticket.from.toLowerCase().includes(fromCity)) &&
+                        (!toCity || ticket.to.toLowerCase().includes(toCity))
+                    );
+                });
+                renderTickets(filteredTickets);
+            },
+            error: function (error) {
+                console.error('Error searching tickets:', error);
+            }
+        });
+    }
+
     // Function to render tickets in the table
     function renderTickets(tickets) {
-        $('#table-header').siblings('.table-row').remove(); // Remove only .table-row elements
+        $('#ticket-rows').empty(); // Clear previous ticket rows
         tickets.forEach(ticket => {
-            $('#table-header').after(`
+            $('#ticket-rows').append(`
                 <section class="table-row" data-id="${ticket.id}">
                     <h6>${ticket.from}</h6>
                     <h6>${ticket.to}</h6>
