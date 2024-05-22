@@ -38,7 +38,7 @@ aside {
         color: $text-color;
         text-decoration: none;
         margin: 1rem 0;
-        font-size: 1.2rem;
+        font-size: 1.0rem;
 
         &:hover {
             text-decoration: underline;
@@ -51,6 +51,7 @@ main {
     padding: 2rem;
     color: $text-color; // Ensure text color in main section is readable
 }
+
 
 #seat-layout {
     display: grid;
