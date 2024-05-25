@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Buses</title>
     <link rel="stylesheet" href="/styles/buses.css">
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script type="module" src="js/buses.js"></script>
@@ -27,16 +27,16 @@
             <section id="managment-bar">
                 <input type="text" id="search-from" placeholder="From City">
                 <input type="text" id="search-to" placeholder="To City">
-                <button id="search-btn">Search</button>
-                <button id="add-ticket-btn">Add new Ticket</button>
+                <button id="search-btn">Search Buses</button>
+                <button id="add-ticket-btn">Add new Bus</button>
             </section>
 
             <!-- Ticket Panel -->
             <section id="ticket-panel" style="display: none;">
-                <h1>Add New Ticket</h1>
+                <h1>Adding New Bus</h1>
                 <input type="text" placeholder="From" id="from">
                 <input type="text" placeholder="To" id="to">
-                <label for="time-select">Time:</label>
+                <label for="time-select"></label>
                 <input type="text" id="time" placeholder="Time">
                 <input type="number" placeholder="Seats" id="seats" min="1">
                 <input type="text" placeholder="Class" id="class">
@@ -44,7 +44,7 @@
                 <label><input type="checkbox" id="food"> Food</label>
 
                 <br><br><br>
-                <button id="submit-ticket-btn">Submit</button>
+                <button id="submit-ticket-btn">Add Bus</button>
             </section>
 
             <section>
