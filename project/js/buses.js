@@ -1,48 +1,99 @@
 $(document).ready(function () {
-    $("#add-ticket-btn").click(function () {
-        $("#ticket-panel").slideToggle(); 
+    const cities = ["Abbottabad", "Attock", "Awaran", "Bahawalpur", "Badin", "Bannu", "Batgram", "Bhakker", "Campbellpur", "Chakwal", "Charsadda", "Chiniot", "Daska", "Dadu", "Dera Ghazi Khan", "Faisalabad", "Ghotki", "Gwadar", "Gujranwala", "Gujjar Khan", "Gujrat", "Hafizabad", "Haripur", "Hyderabad", "Islamabad", "Islamabad Capital Territory", "Jacobabad", "Jamshoro", "Jhang", "Jhelum", "Kasur", "Kech", "Khanewal", "Khairpur", "Kohat", "Khuzdar", "Lahore", "Lasbela", "Layyah", "Leiah", "Larkana", "Lower Dir", "Malakand", "Mandi Bahauddin", "Mansehra", "Mardan", "Matiari", "Mianwali", "Mirpur Khas", "Multan", "Muzaffargarh", "Murree", "Nowshera", "Nowshero Feroz", "Okara", "Panjgur", "Peshawar", "Quetta", "Rahim Yar Khan", "Rawalpindi", "Sadiqabad", "Sanghar", "Sahiwal", " Sargodha", "Shangla", "Sheikhupura", "Shikarpur", "Sialkot", "Sialkot Cantonment", "Sukkur", "Swabi", "Talagang", "Tando Adam", "Tando Allahyar", "Tharparkar", "Toba Tek Singh", "Upper Dir", "Vehari", "Wah Cantt"];
 
-        var buttonText = $(this).text() === "Add new Ticket" ? "Cancel" : "Add new Ticket";
+    function populateCities() {
+        cities.forEach(city => {
+            $('#from').append(new Option(city, city));
+            $('#to').append(new Option(city, city));
+        });
+    }
+
+    function updateToCities() {
+        const selectedFrom = $('#from').val();
+        $('#to').empty().append(new Option("To", "", true, true)).prop('disabled', false);
+        cities.forEach(city => {
+            if (city !== selectedFrom) {
+                $('#to').append(new Option(city, city));
+            }
+        });
+    }
+
+    populateCities();
+
+    // Toggle add bus panel
+    $("#add-ticket-btn").click(function () {
+        $("#ticket-panel").slideToggle();
+        const buttonText = $(this).text() === "Add new Bus" ? "Cancel" : "Add new Bus";
         $(this).text(buttonText);
     });
 
+    // Update 'To' cities when 'From' city changes
+    $('#from').change(updateToCities);
+
+    // Validate date to be not before today
+    function isDateValid(date) {
+        const selectedDate = new Date(date);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Ignore time part
+        return selectedDate >= today;
+    }
+
+    // Submit new bus
     $("#submit-ticket-btn").click(function () {
-        var from = $("#from").val();
-        var to = $("#to").val();
-        var time = $("#time").val();
-        var seats = $("#seats").val();
-        var ticketClass = $("#class").val();
-        var wifi = $("#wifi").prop("checked");
-        var food = $("#food").prop("checked");
+        const from = $("#from").val();
+        const to = $("#to").val();
+        const data = $("#date").val();
+        const time = $("#time").val();
+        const fare = $("#fare").val();
+        const seats = $("#seats").val();
+        const ticketClass = $("#busClass").val();
+        const wifi = $("#wifi").prop("checked");
+        const food = $("#food").prop("checked");
 
-        var ticketData = {
-            from: from,
-            to: to,
-            time: time,
-            seats: seats,
-            ticketClass: ticketClass,
-            wifi: wifi,
-            food: food
+        if (!from || !to || !data || !time || !fare || !seats || !ticketClass) {
+            alert("Please fill in all required fields.");
+            return;
+        }
+
+        if (!isDateValid(data)) {
+            alert("The date selected cannot be before today's date.");
+            return;
+        }
+
+        if (isNaN(fare) || fare <= 0) {
+            alert("Fare must be a number greater than zero.");
+            return;
+        }
+
+        const busData = {
+            from,
+            to,
+            data,
+            time,
+            fare,
+            seats,
+            remainingSeats: seats,
+            ticketClass,
+            wifi,
+            food,
+            bookedSeats: []
         };
-
-        console.log(ticketData);
 
         $.ajax({
             type: 'POST',
             url: 'https://webproject-123-41fb57c20018.herokuapp.com/tickets',
-            data: JSON.stringify(ticketData),
+            data: JSON.stringify(busData),
             contentType: 'application/json',
             success: function () {
-                console.log('Ticket added successfully');
-                getTickets();
+                getBuses();
             },
             error: function (error) {
-                console.error('Error adding ticket:', error);
+                console.error('Error adding bus:', error);
             }
         });
 
         $("#ticket-panel").slideUp();
-        $("#add-ticket-btn").text("Add new Ticket");
+        $("#add-ticket-btn").text("Add new Bus");
 
         $("#ticket-panel input").val("");
         $("#ticket-panel select").val("");
@@ -53,35 +104,35 @@ $(document).ready(function () {
         searchTickets();
     });
 
-    function getTickets() {
+    function getBuses() {
         $.ajax({
             type: 'GET',
             url: 'https://webproject-123-41fb57c20018.herokuapp.com/tickets',
-            success: function (tickets) {
-                console.log('Tickets:', tickets);
-                renderTickets(tickets);
+            success: function (buses) {
+                console.log('Buses received:', buses);
+                renderBuses(buses);
             },
             error: function (error) {
-                console.error('Error getting tickets:', error);
+                console.error('Error getting buses:', error);
             }
         });
     }
 
     function searchTickets() {
-        var fromCity = $("#search-from").val().toLowerCase();
-        var toCity = $("#search-to").val().toLowerCase();
+        const fromCity = $("#search-from").val().toLowerCase();
+        const toCity = $("#search-to").val().toLowerCase();
 
         $.ajax({
             type: 'GET',
             url: 'https://webproject-123-41fb57c20018.herokuapp.com/tickets',
-            success: function (tickets) {
-                var filteredTickets = tickets.filter(ticket => {
+            success: function (buses) {
+                const filteredBuses = buses.filter(bus => {
                     return (
-                        (!fromCity || ticket.from.toLowerCase().includes(fromCity)) &&
-                        (!toCity || ticket.to.toLowerCase().includes(toCity))
+                        (!fromCity || bus.from.toLowerCase().includes(fromCity)) &&
+                        (!toCity || bus.to.toLowerCase().includes(toCity))
                     );
                 });
-                renderTickets(filteredTickets);
+                renderBuses(filteredBuses);
             },
             error: function (error) {
                 console.error('Error searching tickets:', error);
@@ -89,27 +140,29 @@ $(document).ready(function () {
         });
     }
 
-    function renderTickets(tickets) {
-        $('#ticket-rows').empty(); 
-        tickets.forEach(ticket => {
+    function renderBuses(buses) {
+        $('#ticket-rows').empty();
+        buses.forEach(bus => {
             $('#ticket-rows').append(`
-                <section class="table-row" data-id="${ticket.id}">
-                    <h6>${ticket.from}</h6>
-                    <h6>${ticket.to}</h6>
-                    <h6>${ticket.time}</h6>
-                    <h6>${ticket.seats - ticket.remainingSeats}/${ticket.seats}</h6>
-                    <h6>${ticket.ticketClass}</h6>
-                    <h6>${ticket.wifi ? 'Yes' : 'No'}</h6>
-                    <h6>${ticket.food ? 'Yes' : 'No'}</h6>
+                <section class="table-row" data-id="${bus.id}">
+                    <h6>${bus.from}</h6>
+                    <h6>${bus.to}</h6>
+                    <h6>${bus.data}</h6>
+                    <h6>${bus.time}</h6>
+                    <h6>${bus.seats - bus.remainingSeats}/${bus.seats}</h6>
+                    <h6>${bus.ticketClass}</h6>
+                    <h6>${bus.fare}</h6>
+                    <h6>${bus.wifi ? 'Yes' : 'No'}</h6>
+                    <h6>${bus.food ? 'Yes' : 'No'}</h6>
                 </section>
             `);
         });
 
         $('.table-row').on('click', function () {
-            const ticketId = $(this).data('id');
-            window.location.href = `seats.html?ticketId=${ticketId}`;
+            const busId = $(this).data('id');
+            window.location.href = `seats.html?busId=${busId}`;
         });
     }
 
-    getTickets();
+    getBuses();
 });

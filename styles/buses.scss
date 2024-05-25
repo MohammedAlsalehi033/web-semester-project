@@ -135,9 +135,15 @@ button {
   }
 }
 
+#addingBus{
+  padding: 20px 0px;
+}
+
 /* Add cool input field style */
 input[type="text"],
 input[type="number"],
+input[type="date"],
+input[type="time"],
 select {
   width: 100%;
   padding: 0.5rem;
@@ -150,6 +156,8 @@ select {
 
 input[type="text"]:focus,
 input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
 select:focus {
   border-color: dodgerblue;
   outline: none;

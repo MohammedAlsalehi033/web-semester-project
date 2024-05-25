@@ -1,6 +1,6 @@
 $(document).ready(function() {
     const urlParams = new URLSearchParams(window.location.search);
-    const ticketId = urlParams.get('ticketId');
+    const ticketId = urlParams.get('busId');
 
     function fetchTicketDetails() {
         $.ajax({
