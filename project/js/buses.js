@@ -1,10 +1,12 @@
 $(document).ready(function () {
-    const cities = ["Abbottabad", "Attock", "Awaran", "Bahawalpur", "Badin", "Bannu", "Batgram", "Bhakker", "Campbellpur", "Chakwal", "Charsadda", "Chiniot", "Daska", "Dadu", "Dera Ghazi Khan", "Faisalabad", "Ghotki", "Gwadar", "Gujranwala", "Gujjar Khan", "Gujrat", "Hafizabad", "Haripur", "Hyderabad", "Islamabad", "Islamabad Capital Territory", "Jacobabad", "Jamshoro", "Jhang", "Jhelum", "Kasur", "Kech", "Khanewal", "Khairpur", "Kohat", "Khuzdar", "Lahore", "Lasbela", "Layyah", "Leiah", "Larkana", "Lower Dir", "Malakand", "Mandi Bahauddin", "Mansehra", "Mardan", "Matiari", "Mianwali", "Mirpur Khas", "Multan", "Muzaffargarh", "Murree", "Nowshera", "Nowshero Feroz", "Okara", "Panjgur", "Peshawar", "Quetta", "Rahim Yar Khan", "Rawalpindi", "Sadiqabad", "Sanghar", "Sahiwal", " Sargodha", "Shangla", "Sheikhupura", "Shikarpur", "Sialkot", "Sialkot Cantonment", "Sukkur", "Swabi", "Talagang", "Tando Adam", "Tando Allahyar", "Tharparkar", "Toba Tek Singh", "Upper Dir", "Vehari", "Wah Cantt"];
+    const cities = ["Abbottabad", "Attock", "Awaran", "Bahawalpur", "Badin", "Bannu", "Batgram", "Bhakker", "Campbellpur", "Chakwal", "Charsadda", "Chiniot", "Daska", "Dadu", "Dera Ghazi Khan", "Faisalabad", "Ghotki", "Gwadar", "Gujranwala", "Gujjar Khan", "Gujrat", "Hafizabad", "Haripur", "Hyderabad", "Islamabad", "Islamabad Capital Territory", "Jacobabad", "Jamshoro", "Jhang", "Jhelum", "Kasur", "Kech", "Khanewal", "Khairpur", "Kohat", "Khuzdar", "Lahore", "Lasbela", "Layyah", "Leiah", "Larkana", "Lower Dir", "Malakand", "Mandi Bahauddin", "Mansehra", "Mardan", "Matiari", "Mianwali", "Mirpur Khas", "Multan", "Muzaffargarh", "Murree", "Nowshera", "Nowshero Feroz", "Okara", "Panjgur", "Peshawar", "Quetta", "Rahim Yar Khan", "Rawalpindi", "Sadiqabad", "Sanghar", "Sahiwal", "Sargodha", "Shangla", "Sheikhupura", "Shikarpur", "Sialkot", "Sialkot Cantonment", "Sukkur", "Swabi", "Talagang", "Tando Adam", "Tando Allahyar", "Tharparkar", "Toba Tek Singh", "Upper Dir", "Vehari", "Wah Cantt"];
 
     function populateCities() {
         cities.forEach(city => {
             $('#from').append(new Option(city, city));
             $('#to').append(new Option(city, city));
+            $('#search-from').append(new Option(city, city));
+            $('#search-to').append(new Option(city, city));
         });
     }
 
@@ -20,11 +22,39 @@ $(document).ready(function () {
 
     populateCities();
 
+    // Ensure 'To' is not the same as 'From'
+    $('#from').change(updateToCities);
+
+    // Ensure 'Search To' is not the same as 'Search From'
+    $('#search-from').change(function () {
+        const selectedFrom = $(this).val();
+        $('#search-to').empty().append(new Option("To City", "", true, true));
+        cities.forEach(city => {
+            if (city !== selectedFrom) {
+                $('#search-to').append(new Option(city, city));
+            }
+        });
+    });
+
+
     // Toggle add bus panel
     $("#add-ticket-btn").click(function () {
         $("#ticket-panel").slideToggle();
         const buttonText = $(this).text() === "Add new Bus" ? "Cancel" : "Add new Bus";
         $(this).text(buttonText);
+    });
+
+    // Ensure only one checkbox (Full or Vacant) is selected
+    $('#status-full').change(function () {
+        if (this.checked) {
+            $('#status-vacant').prop('checked', false);
+        }
+    });
+
+    $('#status-vacant').change(function () {
+        if (this.checked) {
+            $('#status-full').prop('checked', false);
+        }
     });
 
     // Update 'To' cities when 'From' city changes
@@ -116,8 +146,21 @@ $(document).ready(function () {
         $("#ticket-panel input[type='checkbox']").prop("checked", false);
     });
 
+    // Search buses based on criteria
     $("#search-btn").click(function () {
         searchTickets();
+    });
+
+    // Reset search criteria
+    $("#reset-btn").click(function () {
+        $("#search-from").val("");
+        $("#search-to").val("");
+        $("#search-date").val("");
+        $("#search-time").val("");
+        $("#search-class").val("");
+        $("#status-full").prop("checked", false);
+        $("#status-vacant").prop("checked", false);
+        getBuses();
     });
 
     function getBuses() {
@@ -126,7 +169,11 @@ $(document).ready(function () {
             url: 'https://webproject-123-41fb57c20018.herokuapp.com/tickets',
             success: function (buses) {
                 console.log('Buses received:', buses);
-                renderBuses(buses);
+                const filteredBuses = buses.filter(bus => {
+                    const busDateTime = new Date(bus.data + ' ' + bus.time);
+                    return busDateTime >= new Date();
+                });
+                renderBuses(filteredBuses);
             },
             error: function (error) {
                 console.error('Error getting buses:', error);
@@ -135,18 +182,28 @@ $(document).ready(function () {
     }
 
     function searchTickets() {
-        const fromCity = $("#search-from").val().toLowerCase();
-        const toCity = $("#search-to").val().toLowerCase();
+        const fromCity = $("#search-from").val();
+        const toCity = $("#search-to").val();
+        const date = $("#search-date").val();
+        const time = $("#search-time").val();
+        const ticketClass = $("#search-class").val();
+        const isFullChecked = $("#status-full").prop("checked");
+        const isVacantChecked = $("#status-vacant").prop("checked");
 
         $.ajax({
             type: 'GET',
             url: 'https://webproject-123-41fb57c20018.herokuapp.com/tickets',
             success: function (buses) {
                 const filteredBuses = buses.filter(bus => {
-                    return (
-                        (!fromCity || bus.from.toLowerCase().includes(fromCity)) &&
-                        (!toCity || bus.to.toLowerCase().includes(toCity))
-                    );
+                    const matchesFrom = !fromCity || bus.from === fromCity;
+                    const matchesTo = !toCity || bus.to === toCity;
+                    const matchesDate = !date || bus.data === date;
+                    const matchesTime = !time || bus.time === time;
+                    const matchesClass = !ticketClass || bus.ticketClass === ticketClass;
+                    const matchesStatus = (!isFullChecked && !isVacantChecked) || (isFullChecked && (bus.remainingSeats == 0)) || (isVacantChecked && (bus.remainingSeats > 0));
+                    const busDateTime = new Date(bus.data + ' ' + bus.time);
+                    const isFutureBus = busDateTime >= new Date();
+                    return matchesFrom && matchesTo && matchesDate && matchesTime && matchesClass && matchesStatus && isFutureBus;
                 });
                 renderBuses(filteredBuses);
             },
@@ -159,6 +216,7 @@ $(document).ready(function () {
     function renderBuses(buses) {
         $('#ticket-rows').empty();
         buses.forEach(bus => {
+            const dropButton = `<button class="drop-bus-btn" data-id="${bus.id}">Drop Bus</button>`;
             $('#ticket-rows').append(`
                 <section class="table-row" data-id="${bus.id}">
                     <h6>${bus.from}</h6>

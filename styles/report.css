@@ -30,11 +30,11 @@ a {
 
 .container {
   display: flex;
-  flex-direction: row;
 }
 
 aside {
   position: sticky;
+  top: 0;
   background-color: #DFE24B;
   height: 100vh;
   width: 15vw;

@@ -20,10 +20,25 @@
             <a href="./LoginPage.html"><h1>Sign out</h1></a>
         </aside>
         <section>
-            <section id="managment-bar">
-                <input type="text" id="search-from" placeholder="From City">
-                <input type="text" id="search-to" placeholder="To City">
+            <section id="management-bar">
+                <select id="search-from">
+                    <option value="" disabled selected hidden>From City</option>
+                </select>
+                <select id="search-to">
+                    <option value="" disabled selected hidden>To City</option>
+                </select>
+                <input type="date" id="search-date" placeholder="Date">
+                <input type="time" id="search-time" placeholder="Time">
+                <select id="search-class">
+                    <option value="" disabled selected hidden>Class</option>
+                    <option value="Economy">Economy</option>
+                    <option value="Business">Business</option>
+                </select>
+                <label id="status-label">Bus Status:</label>
+                <label><input type="checkbox" id="status-full"> Full</label>
+                <label><input type="checkbox" id="status-vacant"> Vacant</label>
                 <button id="search-btn">Search Buses</button>
+                <button id="reset-btn">Reset</button>
                 <button id="add-ticket-btn">Add new Bus</button>
             </section>
             <section id="ticket-panel" style="display: none;">

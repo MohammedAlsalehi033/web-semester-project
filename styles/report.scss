@@ -14,12 +14,13 @@ $text-color: black;
 
 .container {
   display: flex;
-  flex-direction: row; 
+   
 }
 
 aside {
   position: -webkit-sticky;
   position: sticky;
+  top:0;
   background-color: $primary-color;
   height: 100vh;
   width: 15vw;

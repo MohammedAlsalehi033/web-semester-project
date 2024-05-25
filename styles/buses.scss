@@ -18,7 +18,7 @@
 aside {
   position: -webkit-sticky;
   position: sticky;
-  top: 0; /* Ensure it sticks to the top */
+  top: 0;
   background-color: $primary-color;
   height: 100vh;
   width: 15vw;
@@ -33,39 +33,40 @@ aside h1 {
 
 /* Main Content Section */
 section {
-  margin: 2rem; /* Adjusted margin for better spacing */
+  margin: 2rem;
   padding: 1rem;
   background-color: $primary-color;
-  flex: 1; /* Grow to fill remaining space */
+  flex: 1;
 }
 
 /* Management Bar */
 #management-bar {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
   align-items: center;
   padding: 1rem;
 }
 
+#management-bar select,
+#management-bar input[type="date"],
+#management-bar input[type="time"],
+#management-bar input[type="text"],
+#management-bar input[type="number"],
 #management-bar button {
-  width: 15vw;
+  width: calc(20% - 10px);
   height: 7vh;
   background-color: $third-color;
   border-radius: 1rem;
   border: 0px;
 }
 
-#search {
-  width: 55vw;
-  height: 7vh;
-  background-color: $third-color;
-  border-radius: 1rem;
-  padding-left: 3rem;
-  background-image: url("./search.svg");
-  background-size: 1.5rem;
-  background-position: 1rem center;
-  background-repeat: no-repeat;
-  border: 0px;
+#management-bar button {
+  width: calc(15% - 10px);
+}
+
+#management-bar label {
+  margin-left: 20px;
 }
 
 /* Table Header */
@@ -112,34 +113,33 @@ button {
 
 /* Responsive Styles */
 @media screen and (max-width: 768px) {
-  /* Adjust styles for smaller screens */
   aside {
-    width: 100%; /* Occupy full width */
+    width: 100%;
     max-width: 100%;
-    height: auto; /* Adjust height automatically based on content */
+    height: auto;
   }
   
   #management-bar {
-    flex-direction: column; /* Stack items vertically */
-    align-items: flex-start; /* Align items to the start */
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  #management-bar button,
-  #search {
-    width: 90%; /* Occupy 90% of the width */
-    margin: 0.5rem auto; /* Center horizontally with some margin */
+  #management-bar select,
+  #management-bar input,
+  #management-bar button {
+    width: 90%;
+    margin: 0.5rem auto;
   }
 
   #header {
-    padding: 0 1rem; /* Added padding for better spacing */
+    padding: 0 1rem;
   }
 }
 
-#addingBus{
+#addingBus {
   padding: 20px 0px;
 }
 
-/* Add cool input field style */
 input[type="text"],
 input[type="number"],
 input[type="date"],
@@ -163,7 +163,6 @@ select:focus {
   outline: none;
 }
 
-/* Add custom checkbox style */
 input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
@@ -180,9 +179,7 @@ input[type="checkbox"]:checked {
   background-color: dodgerblue;
 }
 
-
 @media only screen and (max-width: 780px) {
-
   aside {
     width: 100%;
     height: auto;
@@ -195,8 +192,8 @@ input[type="checkbox"]:checked {
       margin: 0;
     }
   }
+
   .container {
     flex-direction: column;
   }
-
 }
