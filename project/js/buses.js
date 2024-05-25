@@ -38,6 +38,17 @@ $(document).ready(function () {
         return selectedDate >= today;
     }
 
+    // Validate time if date is today
+    function isTimeValid(date, time) {
+        const selectedDate = new Date(date);
+        const today = new Date();
+        if (selectedDate.toDateString() === today.toDateString()) {
+            const selectedTime = new Date(today.toDateString() + ' ' + time);
+            return selectedTime >= today;
+        }
+        return true;
+    }
+
     // Submit new bus
     $("#submit-ticket-btn").click(function () {
         const from = $("#from").val();
@@ -57,6 +68,11 @@ $(document).ready(function () {
 
         if (!isDateValid(data)) {
             alert("The date selected cannot be before today's date.");
+            return;
+        }
+
+        if (!isTimeValid(data, time)) {
+            alert("The time selected cannot be before the current time for today's date.");
             return;
         }
 
