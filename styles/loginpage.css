@@ -21,10 +21,11 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #DFE24B; /* Use the defined variable for primary color */
+  background-color: #DFE24B;
   width: 100%;
   height: 10vh;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  color: black;
 }
 
 #login-form {
@@ -41,60 +42,85 @@ a {
   justify-content: center;
   flex-direction: column;
 }
-#login-form #email-password input {
-  margin: 2rem 0;
-  width: 25vw;
+#login-form #email-password .input-container {
+  position: relative;
+  margin: 1rem 0;
+  width: 27vw;
+}
+#login-form #email-password .input-container input {
+  width: 100%;
   height: 7vh;
   box-sizing: border-box;
   background-color: #DFE24B;
-  border-radius: 1rem;
-  padding-left: 3rem;
-  background-image: url("./email.svg");
+  border-radius: 0.5rem;
+  padding-left: 2rem;
   background-size: 1.5rem;
   background-position: 1rem center;
   background-repeat: no-repeat;
+  color: black;
 }
-#login-form #email-password input:nth-child(2) {
-  background-image: url("./password.svg");
+#login-form #email-password .input-container input::-moz-placeholder {
+  opacity: 0.6;
+  font-size: 1.2rem;
+  color: black;
+}
+#login-form #email-password .input-container input::placeholder {
+  opacity: 0.6;
+  font-size: 1.2rem;
+  color: black;
+}
+#login-form #email-password .input-container input[type=password] {
+  background-image: url("../assets/password.svg");
+  background-position: right 1.5rem center;
+  padding-right: 2rem;
+}
+#login-form #email-password .input-container .error-message {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
 }
 #login-form #email-password #submit {
-  margin: 2rem 0;
-  width: 8vw;
+  margin: 1rem 0;
+  width: 10vw;
   height: 6vh;
   box-sizing: border-box;
   background-color: #DFE24B;
-  border-radius: 1rem;
-}
-#login-form #email-password input::-moz-placeholder {
-  opacity: 0.6;
+  border-radius: 0.5rem;
+  color: black;
   font-size: 1.2rem;
-  padding-left: 1rem;
+  cursor: pointer;
+  font-weight: bold;
 }
-#login-form #email-password input::placeholder {
-  opacity: 0.6;
-  font-size: 1.2rem;
-  padding-left: 1rem;
+#login-form #email-password #submit:hover {
+  background-color: #333333;
 }
 #login-form #Fac-Google {
   display: flex;
   align-items: center;
   justify-content: center;
   justify-content: space-around;
-  margin-top: 30px;
+  margin-top: 2rem;
   width: 40vw;
 }
 #login-form #Fac-Google button {
   background-color: #DFE24B;
   width: 80px;
   height: 80px;
-  border-radius: 100px;
+  border-radius: 50%;
   background-size: 35px;
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
+}
+#login-form #Fac-Google button:hover {
+  background-color: #333333;
 }
 #login-form #Fac-Google button:nth-child(1) {
-  background-image: url(google.svg);
+  background-image: url("../assets/google.svg");
 }
 #login-form #Fac-Google button:nth-child(2) {
-  background-image: url(facebook.svg);
+  background-image: url("../assets/facebook.svg");
 }/*# sourceMappingURL=loginpage.css.map */

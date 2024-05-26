@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/styles/profile.css">
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+</head>
+
+<body>
+    <header id="header">
+        <h1>Transport Management System</h1>
+    </header>
+
+    <div class="container">
+        <aside>
+            <a href="./buses.html"><h1>Buses</h1></a>
+            <a href="./reports.html"><h1>Reports</h1></a>
+            <a href="./LoginPage.html" id="sign-out"><h1>Sign out</h1></a>
+        </aside>
+
+        <main>
+            <div id="profileHead">
+                <h2>User Profile</h2>
+            </div>
+            <section id="profile-section">
+                <div class="profile-info">
+                    <div class="profile-item">
+                        <label>Job Specification:</label>
+                        <span id="profile-job"></span>
+                    </div>
+                    <div class="profile-item">
+                        <label>Name:</label>
+                        <span id="profile-name"></span>
+                    </div>
+                    <div class="profile-item">
+                        <label>Gender:</label>
+                        <span id="profile-gender"></span>
+                    </div>
+                    <div class="profile-item">
+                        <label>CNIC:</label>
+                        <span id="profile-cnic"></span>
+                    </div>
+                    <div class="profile-item">
+                        <label>Country:</label>
+                        <span id="profile-country"></span>
+                    </div>
+                    <div class="profile-item">
+                        <label>Email:</label>
+                        <span id="profile-email"></span>
+                    </div>
+                    <div class="profile-item">
+                        <label>Password:</label>
+                        <span id="profile-password"></span>
+                    </div>
+                    <div class="profile-item">
+                        <label>Phone:</label>
+                        <span id="profile-phone"></span>
+                    </div>
+                    <div class="profile-item">
+                        <label>Address:</label>
+                        <span id="profile-address"></span>
+                    </div>
+                </div>
+                <div id="profile-picture-container">
+                    <div class="profile-item">
+                        <img id="profile-picture" src="" alt="Profile Picture" />
+                        <input type="file" id="upload-picture" accept="image/*" />
+                    </div>
+                </div>
+            </section>
+            <button id="edit-profile">Edit Profile</button>
+        </main>
+    </div>
+
+    <script src="./js/profile.js"></script>
+</body>
+
+</html>

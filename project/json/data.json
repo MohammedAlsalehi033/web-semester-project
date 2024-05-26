@@ -1,0 +1,17 @@
+{
+    "admin": [
+      {
+        "Job Specification": "Manager",
+        "Name": "Mr. Mujahid",
+        "Gender": "Male",
+        "CNIC": "32102-5475768-6",
+        "Country": "Pakistan",
+        "email": "admin@gmail.com",
+        "password": "admin123",
+        "Phone": "0331-0207494",
+        "Address": "Park Road Tarlai Kalan, Islamabad",
+        "profilePicture":"../assets/admin.jpg"
+      }
+    ]
+  }
+  

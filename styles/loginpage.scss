@@ -1,90 +1,110 @@
 @import "variables";
 @import "global";
 
-
 #login-header {
   @include flexCenter();
-  background-color: $primary-color; /* Use the defined variable for primary color */
+  background-color: $primary-color;
   width: 100%;
   height: 10vh;
-  font-size: 1.5rem;  
+  font-size: 1.3rem;
+  color: $text-color;
 }
 
 #login-form {
   @include flexCenter();
   height: 90vh;
   flex-direction: column;
-  flex-grow: 1; 
+  flex-grow: 1;
+
   #email-password {
     @include flexCenter();
     flex-direction: column;
-  
-    input {
-      margin: 2rem 0; 
-      width: 25vw;
-      height: 7vh;
-      box-sizing: border-box;
-      background-color: $primary-color;
-      border-radius: 1rem; 
-      padding-left: 3rem; 
-      background-image: url("./email.svg");
-      background-size: 1.5rem; 
-      background-position: 1rem center;  
-      background-repeat: no-repeat;
+
+    .input-container {
+      position: relative;
+      margin: 1rem 0;
+      width: 27vw;
+
+      input {
+        width: 100%;
+        height: 7vh;
+        box-sizing: border-box;
+        background-color: $primary-color;
+        border-radius: 0.5rem;
+        padding-left: 2rem;
+        background-size: 1.5rem;
+        background-position: 1rem center;
+        background-repeat: no-repeat;
+        color: $text-color;
+
+        &::placeholder {
+          opacity: 0.6;
+          font-size: 1.2rem;
+          color: $text-color;
+        }
+      }
+
+      input[type="password"] {
+        background-image: url("../assets/password.svg");
+        background-position: right 1.5rem center;
+        padding-right: 2rem;
+      }
+
+      .error-message {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        color: red;
+        font-size: 0.9rem;
+        margin-top: 0.2rem;
+      }
     }
-  
-     input:nth-child(2){
-      background-image: url("./password.svg");
-  
-    }
-  
-  
-    #submit{
-      margin: 2rem 0; 
-      width: 8vw;
+
+    #submit {
+      margin: 1rem 0;
+      width: 10vw;
       height: 6vh;
       box-sizing: border-box;
       background-color: $primary-color;
-      border-radius: 1rem; 
-  
+      border-radius: 0.5rem;
+      color: $text-color;
+      font-size: 1.2rem;
+      cursor: pointer;
+      font-weight: bold;
 
-    }
-  
-  
-   
-  
-  
-    input::placeholder {
-      opacity: 0.6;
-      font-size: 1.2rem;  
-      padding-left: 1rem;  
+      &:hover {
+        background-color: lighten($secondery-color, 20%);
+      }
     }
   }
-  
 
-   #Fac-Google{
+  #Fac-Google {
     @include flexCenter();
     justify-content: space-around;
-    margin-top: 30px;
+    margin-top: 2rem;
     width: 40vw;
-    button{
-        background-color: $primary-color;
-        width: 80px;
-        height: 80px;
-        border-radius: 100px;
-        background-size: 35px;
-        background-repeat: no-repeat;
-        background-position: center;
+
+    button {
+      background-color: $primary-color;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-size: 35px;
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
+
+      &:hover {
+        background-color: lighten($secondery-color, 20%);
+      }
+
+      &:nth-child(1) {
+        background-image: url('../assets/google.svg');
+      }
+
+      &:nth-child(2) {
+        background-image: url('../assets/facebook.svg');
+      }
     }
-    
-    button:nth-child(1){
-        background-image: url(google.svg);
-    }
-    button:nth-child(2){
-        background-image: url(facebook.svg);
-    }
-  
-      
   }
 }
-

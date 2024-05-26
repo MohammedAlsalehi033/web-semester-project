@@ -67,5 +67,25 @@ $(document).ready(function() {
         });
     }
 
+    function handleSignOut(event) {
+        event.preventDefault(); // Prevent the default link behavior
+        sessionStorage.clear(); // Clear session storage
+    
+        // Replace the current state and redirect to the login page
+        history.replaceState(null, null, './LoginPage.html');
+        window.location.replace('./LoginPage.html');
+    
+        // Push a dummy state to the history
+        history.pushState(null, null, './LoginPage.html');
+    
+        // Add a popstate event listener to prevent back and forward navigation
+        window.addEventListener('popstate', function(event) {
+            history.pushState(null, null, './LoginPage.html');
+            window.location.replace('./LoginPage.html');
+        });
+    }
+    
+    document.getElementById('sign-out').addEventListener('click', handleSignOut);
+
     fetchTicketDetails();
 });

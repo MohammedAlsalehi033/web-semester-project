@@ -2,29 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=\, initial-scale=1.0">
-    <title>Suhail</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transport Management System</title>
     <link rel="stylesheet" href="../styles/loginpage.css">
+    <script src="js/login.js"></script>
 </head>
 <body>
     <header id="login-header">
-        <h1>Welcome Back</h1>
+        <h1>Welcome Back To System</h1>
     </header>
     <section id="login-form">
         <section id="email-password">
-
-            <input type="email" placeholder="Enter Your Email">
-            <input type="password" placeholder="Enter Your password">
-            <button id="submit">login</button>
-
-
+            <div class="input-container">
+                <input type="email" id="email" placeholder="Enter Your Email" required>
+                <span id="email-error" class="error-message"></span>
+            </div>
+            <div class="input-container">
+                <input type="password" id="password" placeholder="Enter Your Password" required>
+                <span id="password-error" class="error-message"></span>
+            </div>
+            <button id="submit" onclick="login()">Login</button>
         </section>
-
         <section id="Fac-Google">
-            <button></button>
-            <button></button>
+            <button onclick="window.location.href='https://www.google.com';"></button>
+            <button onclick="window.location.href='https://www.facebook.com';"></button>
         </section>
-
     </section>
+    
 </body>
 </html>

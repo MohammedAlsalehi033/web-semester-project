@@ -6,7 +6,7 @@
   @include flexCenter();
   background-color: $third-color;
   height: 10vh;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 /* Main Container */
@@ -25,10 +25,18 @@ aside {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 1rem;
+  color: $text-color;
 }
 
 aside h1 {
   margin: 1rem 0;
+  color: $text-color;
+  text-decoration: none;
+  font-size: 1.2rem;
+  &:hover {
+    text-decoration: underline;
+}
 }
 
 /* Main Content Section */

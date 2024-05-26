@@ -1,0 +1,135 @@
+@import "variables"; // Import your variables file
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: $secondery-color; // Use the correct variable name
+
+}
+
+#header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $third-color;
+    height: 10vh;
+    color: $text-color;
+    font-size: 1.3rem;
+}
+
+.container {
+    display: flex;
+}
+
+aside {
+    position: sticky;
+
+    top: 0;
+    background-color: $primary-color;
+    height: 100vh;
+    width: 10vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    color: $text-color;
+
+    a {
+        color: $text-color;
+        text-decoration: none;
+        margin: 1rem 0;
+        font-size: 1.2rem;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+main {
+    flex: 1;
+    padding: 2rem;
+    color: $text-color;
+}
+#profileHead {
+    background-color: $third-color;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    display: block;
+    text-align: center;
+
+    h2 {
+        margin: 0;
+        color: $text-color;
+    }
+}
+#profile-section {
+    background-color: lighten($primary-color, 5%);
+    padding: 2rem;
+    border-radius: 10px;
+    display: flex; // Add flex display to the profile section
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2rem;
+
+    .profile-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        flex-grow: 1;
+    
+        .profile-item {
+            display: flex;
+            align-items: center;
+    
+            label {
+                font-weight: bold;
+                min-width: 220px;
+                text-align: left;
+            }
+    
+            span {
+                flex: 1; // Make the span flexible to occupy available space
+                text-align: left;
+            }
+        }
+    }
+    
+}
+
+
+
+#profile-picture-container {
+    display: flex;
+    justify-content: flex-end; // Align the picture to the right
+    align-items: center;
+
+    img {
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        padding-top: 0.8rem;
+    }
+
+}
+
+input[type="file"] {
+    display: none;
+}
+
+#edit-profile {
+    display: block;
+    margin: 2rem auto 0;
+    padding: 0.5rem 1rem;
+    background-color: $primary-color;
+    color: $text-color;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: darken($primary-color, 10%);
+    }
+}
