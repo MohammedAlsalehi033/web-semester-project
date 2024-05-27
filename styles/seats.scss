@@ -57,7 +57,7 @@ main {
     grid-template-columns: repeat(2, 50px) 50px repeat(2, 50px); // Adjust to fit the layout with an aisle in the middle
     gap: 14px;
     justify-content: center; // Center the seats in the container
-    background-color: yellow; // Set background color of the seat grid to yellow
+    background-color:$primary-color; // Set background color of the seat grid to yellow
     padding: 3rem;
     border-radius: 10px;
 

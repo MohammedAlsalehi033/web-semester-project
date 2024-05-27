@@ -53,7 +53,7 @@ main {
   grid-template-columns: repeat(2, 50px) 50px repeat(2, 50px);
   gap: 14px;
   justify-content: center;
-  background-color: yellow;
+  background-color: #DFE24B;
   padding: 3rem;
   border-radius: 10px;
 }
