@@ -111,6 +111,7 @@ input[type=file] {
   padding: 0.5rem 1rem;
   background-color: #DFE24B;
   color: black;
+  font-weight: bold;
   border: none;
   border-radius: 5px;
   cursor: pointer;

@@ -40,7 +40,6 @@ aside {
         text-decoration: none;
         margin: 1rem 0;
         font-size: 1.2rem;
-
         &:hover {
             text-decoration: underline;
         }
@@ -125,6 +124,7 @@ input[type="file"] {
     padding: 0.5rem 1rem;
     background-color: $primary-color;
     color: $text-color;
+    font-weight: bold;
     border: none;
     border-radius: 5px;
     cursor: pointer;
